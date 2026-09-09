@@ -50,6 +50,10 @@ Framer's side is free.
 Start with the trial config. A bigger scrape doesn't find better businesses, it
 just gives you more to choose from.
 
+Pass the same `--config` to `find` and `qualify`. If nothing qualifies, lower
+`minReviews` in the config and re-run `qualify`; that costs nothing, and small
+towns and newer businesses often sit below the default of 25.
+
 ## Setup
 
 The quickest way is to hand this repo to an AI editor. Point Claude Code, Cursor

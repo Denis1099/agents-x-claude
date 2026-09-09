@@ -4,13 +4,19 @@ import { qualify } from './lib/qualify.mjs';
 import { buildBrief, briefToMarkdown } from './lib/brief.mjs';
 import { DATA, BRIEFS, today, newestRawFile, loadConfig } from './lib/paths.mjs';
 
-// Free and re-runnable. Tune the gates and run this as many times as you like. Function main() {
+// Free and re-runnable. Tune the gates and run this as many times as you like.
+function main() {
   const argv = process.argv.slice(2);
   const { config } = loadConfig(argv);
 
-  const rawPath = newestRawFile();
+  // 1-find names its output after the config's _outPrefix. Read the same prefix
+  // here, or a prefixed scrape (config/trial.json writes trial-*.json) is never
+  // read and this silently qualifies an older, unrelated scrape instead.
+  const prefix = config._outPrefix ?? 'raw';
+  const rawPath = newestRawFile(prefix);
   if (!rawPath) {
-    console.error('[qualify] no data/raw-*.json found. Run `npm run find` first.');
+    console.error(`[qualify] no data/${prefix}-*.json found. Run \`npm run find\` first`);
+    console.error(`[qualify] (this config writes "${prefix}-<date>.json" — pass the same --config to both commands)`);
     process.exit(1);
   }
   const places = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
@@ -27,7 +33,7 @@ import { DATA, BRIEFS, today, newestRawFile, loadConfig } from './lib/paths.mjs'
   console.log(`[qualify] ${targets.length} qualified targets`);
 
   if (!targets.length) {
-    console.error('[qualify] nothing qualified. Loosen minReviews in the config and re-run. This step is free.');
+    console.error('[qualify] nothing qualified. Loosen minReviews in the config and re-run — this step is free.');
     process.exit(1);
   }
 
@@ -48,7 +54,7 @@ import { DATA, BRIEFS, today, newestRawFile, loadConfig } from './lib/paths.mjs'
 
   console.log(`\n[qualify] top ${Math.min(n, targets.length)} targets:`);
   targets.slice(0, n).forEach((t, i) => {
-    console.log(`  ${i + 1}. ${t.place.title}. Score ${Math.round(t.score)} (${t.tier}, ${t.place.totalScore}★ / ${t.place.reviewsCount} reviews)`);
+    console.log(`  ${i + 1}. ${t.place.title} — score ${Math.round(t.score)} (${t.tier}, ${t.place.totalScore}★ / ${t.place.reviewsCount} reviews)`);
   });
 
   const best = buildBrief(targets[0]);
