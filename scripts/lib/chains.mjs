@@ -7,7 +7,7 @@
  * franchisee is buying one. The same problem shows up in every vertical, and
  * a name blocklist is the cheapest reliable fix.
  *
- * Keep this a blocklist, never an allowlist — an unrecognized name should
+ * Keep this a blocklist, never an allowlist. An unrecognized name should
  * always survive to the ranked list, where a human sees it.
  */
 export const CHAINS = [

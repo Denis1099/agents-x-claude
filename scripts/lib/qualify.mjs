@@ -40,7 +40,7 @@ export function scorePlace(place, tier) {
 
 /**
  * Returns the first gate a place fails, or null if it passes them all.
- * Order matters — it decides which reason gets reported.
+ * Order matters. It decides which reason gets reported.
  */
 function rejectionReason(place, tier, opts) {
   if (isChain(place?.title)) return 'chain';

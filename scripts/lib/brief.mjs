@@ -54,9 +54,9 @@ function whyQualified(place, tier) {
 
   if (tier === 'social_only') {
     const host = websiteHost(place);
-    return `${proof} — and no real website, just ${host}.`;
+    return `${proof}. And no real website, just ${host}.`;
   }
-  return `${proof} — and no website on the listing at all.`;
+  return `${proof}. And no website on the listing at all.`;
 }
 
 /**
@@ -130,7 +130,7 @@ export function briefToMarkdown(brief) {
   }
   if (brief.photos.length) {
     md += `\n## Photos (${brief.photos.length})\n\n`;
-    md += `Downloaded to \`photos/\` — attach these to the Framer Agent prompts.\n`;
+    md += `Downloaded to \`photos/\`. Attach these to the Framer Agent prompts.\n`;
   }
   return md;
 }

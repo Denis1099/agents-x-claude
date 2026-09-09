@@ -19,15 +19,13 @@ export async function runGooglePlacesForRegion(client, {
     skipClosedPlaces,
     exportPlaceUrls: false,
     // Without maxImages the actor returns imagesCount but leaves imageUrls
-    // EMPTY — verified across 802 real records. The builder needs real photos
-    // to attach to the Framer prompts, so this is not optional.
-    maxImages,
+    // EMPTY. Verified across 802 real records. The builder needs real photos
+    // to attach to the Framer prompts, so this is not optional. MaxImages,
   };
 
   console.log(`[apify] starting ${actor} for region=${region}`);
   // Hard ceiling on spend. The actor is pay-per-event, so without this a bad
-  // config can quietly drain the account balance.
-  const run = await client.actor(actor).call(input, { maxTotalChargeUsd });
+  // config can quietly drain the account balance. Const run = await client.actor(actor).call(input, { maxTotalChargeUsd });
   console.log(`[apify] run ${run.id} finished status=${run.status}`);
 
   const { items } = await client.dataset(run.defaultDatasetId).listItems();

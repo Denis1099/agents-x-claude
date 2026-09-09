@@ -5,8 +5,7 @@ import { makeApifyClient, runGooglePlacesForRegion } from './lib/apify.mjs';
 import { DATA, today, loadConfig } from './lib/paths.mjs';
 
 // The only script that spends money. Everything downstream is free and
-// re-runnable against whatever this leaves in data/.
-async function main() {
+// re-runnable against whatever this leaves in data/. Async function main() {
   const argv = process.argv.slice(2);
   const dryRun = argv.includes('--dry-run');
   const { file, config } = loadConfig(argv);
@@ -23,7 +22,7 @@ async function main() {
   }
 
   if (dryRun) {
-    console.log('[find] DRY RUN — planned Apify runs:');
+    console.log('[find] DRY RUN. Planned Apify runs:');
     regions.forEach((r) => console.log(`  - ${config.actor} / ${r} / ${config.searchStringsArray.join(', ')}`));
     const places = regions.length * config.searchStringsArray.length * config.maxCrawledPlacesPerSearch;
     const est = places * 0.004 + places * 0.001 + places * (config.maxImages ?? 0) * 0.0005;
@@ -41,13 +40,12 @@ async function main() {
       const items = await runGooglePlacesForRegion(client, { ...config, region });
       items.forEach((i) => { i._region = region; });
       collected.push(...items);
-      // Save after every region so a budget cutoff never loses paid-for work.
-      fs.writeFileSync(outPath, JSON.stringify([...existing, ...collected], null, 2));
+      // Save after every region so a budget cutoff never loses paid-for work. Fs.writeFileSync(outPath, JSON.stringify([...existing, ...collected], null, 2));
       console.log(`[find] saved ${existing.length + collected.length} places`);
     } catch (e) {
       console.error(`[find] region=${region} failed: ${e.message}`);
       if (/limit|budget|quota/i.test(e.message)) {
-        console.log('[find] looks like an Apify budget limit — stopping.');
+        console.log('[find] looks like an Apify budget limit. Stopping.');
         break;
       }
     }

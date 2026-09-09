@@ -23,7 +23,7 @@ export const STRONG_TARGET = {
   openingHours: [{ day: 'Monday', hours: '8 AM to 5 PM' }],
   reviewsTags: [{ title: 'patio', count: 14 }, { title: 'prices', count: 9 }],
   url: 'https://maps.google.com/?cid=1', placeId: 'cedar1',
-  // no `website` key at all — the actor omits it
+  // no `website` key at all. The actor omits it
 };
 
 export const SOCIAL_ONLY_TARGET = {

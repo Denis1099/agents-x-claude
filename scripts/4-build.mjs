@@ -10,7 +10,7 @@ import { buildSiteDsl } from '../fallback/site-dsl.mjs';
  * Builds the Framer site from a target brief.
  *
  * Reuses one pre-authorized project and wipes its page on each run. `project
- * new` opens a browser approval dialog every time — verified — which would put
+ * new` opens a browser approval dialog every time. Verified. Which would put
  * a manual click in the middle of a live demo.
  *
  * Usage:
@@ -80,16 +80,14 @@ function main() {
 
   // 1. Read the live page. Nothing about the project is hardcoded: the page and
   //    its primary breakpoint are discovered, so this runs against any project.
-  //    getContext() returns a null site map, hence getNodesOfTypes.
-  const probe = execScript(sessionId, `
+  //    getContext() returns a null site map, hence getNodesOfTypes. Const probe = execScript(sessionId, `
 const pages = await framer.agent.getNodesOfTypes({ types: ['WebPageNode'] });
 const page = pages.find((p) => p.attributes && p.attributes.path === '/') || pages[0];
 const full = await framer.agent.getNodes({ ids: [page.id] });
 const node = full[0];
 const existing = (node.children || []).flatMap((c) => c.children || []).map((c) => c.id);
 // Styles are project-scoped, not page children, so a page wipe leaves them
-// behind and a re-run would stack duplicate "Display" presets.
-const styles = await framer.agent.getNodesOfTypes({ types: ['ColorStyleTokenNode', 'TextStylePresetNode'] });
+// behind and a re-run would stack duplicate "Display" presets. Const styles = await framer.agent.getNodesOfTypes({ types: ['ColorStyleTokenNode', 'TextStylePresetNode'] });
 console.log(JSON.stringify({
   breakpointId: node.$breakpoints[0].id,
   pagePath: (node.attributes && node.attributes.path) || '/',
@@ -131,7 +129,7 @@ else {
     console.log(pub.trim().split('\n').pop());
   }
 
-  console.log(`[build] done — ${brief.name}`);
+  console.log(`[build] done. ${brief.name}`);
 }
 
 main();

@@ -4,8 +4,7 @@ import { qualify } from './lib/qualify.mjs';
 import { buildBrief, briefToMarkdown } from './lib/brief.mjs';
 import { DATA, BRIEFS, today, newestRawFile, loadConfig } from './lib/paths.mjs';
 
-// Free and re-runnable. Tune the gates and run this as many times as you like.
-function main() {
+// Free and re-runnable. Tune the gates and run this as many times as you like. Function main() {
   const argv = process.argv.slice(2);
   const { config } = loadConfig(argv);
 
@@ -28,7 +27,7 @@ function main() {
   console.log(`[qualify] ${targets.length} qualified targets`);
 
   if (!targets.length) {
-    console.error('[qualify] nothing qualified. Loosen minReviews in the config and re-run — this step is free.');
+    console.error('[qualify] nothing qualified. Loosen minReviews in the config and re-run. This step is free.');
     process.exit(1);
   }
 
@@ -49,7 +48,7 @@ function main() {
 
   console.log(`\n[qualify] top ${Math.min(n, targets.length)} targets:`);
   targets.slice(0, n).forEach((t, i) => {
-    console.log(`  ${i + 1}. ${t.place.title} — score ${Math.round(t.score)} (${t.tier}, ${t.place.totalScore}★ / ${t.place.reviewsCount} reviews)`);
+    console.log(`  ${i + 1}. ${t.place.title}. Score ${Math.round(t.score)} (${t.tier}, ${t.place.totalScore}★ / ${t.place.reviewsCount} reviews)`);
   });
 
   const best = buildBrief(targets[0]);

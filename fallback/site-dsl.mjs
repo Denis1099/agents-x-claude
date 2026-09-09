@@ -1,12 +1,12 @@
 /**
- * FALLBACK RENDERER — not the normal path.
+ * FALLBACK RENDERER. Not the normal path.
  *
  * Emits one fixed layout: the landscaping design (deep canopy green, condensed
  * display type, services-as-legend). It exists so a failed live run has a
  * one-command rescue that produces a known-good site.
  *
  * The normal path is the agent designing for the business in front of it and
- * writing its own DSL — see skills/framer-site-builder/SKILL.md. Reaching for
+ * writing its own DSL. See skills/framer-site-builder/SKILL.md. Reaching for
  * this file by default is how every site ends up looking the same, which is the
  * one thing this project claims not to do.
  *
@@ -51,7 +51,7 @@ export function defaultContent(brief) {
       ? `${brief.city}’s ${brief.rating}-star ${cat}.`
       : `${cat} in ${brief.city}.`,
     sub: services.length
-      ? `${services.slice(0, 4).join(', ')} — across ${where || brief.city}.`
+      ? `${services.slice(0, 4).join(', ')}. Across ${where || brief.city}.`
       : `Serving ${where || brief.city}.`,
     ctaSecondary: 'See the work',
 
@@ -74,7 +74,7 @@ export function defaultContent(brief) {
         ? `${brief.name} works out of ${brief.address}, serving ${where || brief.city} and the surrounding area.`
         : `${brief.name} serves ${where || brief.city} and the surrounding area.`,
       services.length
-        ? `Google lists ${services.length} services under this business — ${services.join(', ').toLowerCase()} — which means one number covers the whole job.`
+        ? `Google lists ${services.length} services under this business. ${services.join(', ').toLowerCase()}. Which means one number covers the whole job.`
         : `Reach them directly on the number below.`,
     ],
 
@@ -289,8 +289,7 @@ function contactDsl(brief, c, bp) {
     );
   }
 
-  // The disclaimer is not optional. The business has not been consulted.
-  out.push(
+  // The disclaimer is not optional. The business has not been consulted. Out.push(
     `+RichTextNode disclaimer parent="contactInner" index="4" text="Concept site built from public Google listing data. Not affiliated with ${t(brief.name)}." textStylePreset="Body" width="1fr" maxWidth="620px" height="auto" textAlignment="center" fontSize="12px" opacity="0.45";`,
     `SET contactInner appearEffect.trigger="onInView" appearEffect.threshold="0.2" appearEffect.enter.opacity="0" appearEffect.enter.y="20" appearEffect.enter.transition="spring-duration 0.6s 0.3 0s" appearEffect.enter.stagger="0.06s";`,
   );
@@ -309,7 +308,7 @@ function contactDsl(brief, c, bp) {
  * @returns {string} DSL for a single applyChanges call
  */
 export function buildSiteDsl(brief, { breakpointId, content } = {}) {
-  if (!breakpointId) throw new Error('breakpointId is required — read it from the live project.');
+  if (!breakpointId) throw new Error('breakpointId is required. Read it from the live project.');
   const c = { ...defaultContent(brief), ...(content ?? {}) };
 
   return [

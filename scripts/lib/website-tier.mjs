@@ -13,7 +13,7 @@
 
 /**
  * Hosts that are not a real business website. Matched by exact host or by
- * subdomain suffix, never by substring — `yelpbusters.com` is a real site.
+ * subdomain suffix, never by substring. `yelpbusters.com` is a real site.
  */
 export const NON_SITE_HOSTS = [
   // Social profiles
@@ -31,7 +31,7 @@ export const NON_SITE_HOSTS = [
   'setmore.com', 'calendly.com', 'schedulicity.com', 'housecallpro.com',
   'getjobber.com', 'jobber.com',
   // Dead or hobby site builders. `business.site` was Google's own builder,
-  // discontinued in 2024 — every one of these is a dead link today.
+  // discontinued in 2024. Every one of these is a dead link today.
   'business.site', 'sites.google.com', 'wixsite.com', 'weebly.com',
   'godaddysites.com', 'blogspot.com', 'wordpress.com', 'webador.com',
   'carrd.co', 'my-free.website', 'company.site', 'webnode.com', 'jimdosite.com',
