@@ -1,0 +1,27 @@
+{
+  "_vertical": "landscaping",
+  "_note": "Example config. San Antonio has a high proportion of trades with no website; copy this file and change searchStringsArray and regions for your own vertical and city.",
+  "actor": "compass/crawler-google-places",
+  "searchStringsArray": [
+    "landscaping",
+    "landscape contractor",
+    "lawn care service"
+  ],
+  "regions": [
+    "San Antonio, Texas, United States"
+  ],
+  "maxCrawledPlacesPerSearch": 40,
+  "language": "en",
+  "scrapeContacts": false,
+  "skipClosedPlaces": true,
+  "_gatesNote": "Consumed by 2-qualify.mjs. Loosen minReviews first if a run comes back thin.",
+  "minRating": 4.5,
+  "minReviews": 25,
+  "allowTiers": [
+    "none",
+    "social_only"
+  ],
+  "briefsToWrite": 5,
+  "maxImages": 12,
+  "maxTotalChargeUsd": 2.0
+}

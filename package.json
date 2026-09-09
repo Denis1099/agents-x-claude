@@ -1,0 +1,22 @@
+{
+  "name": "framer-agents-leadgen",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Finds high-rated local businesses with no website, and briefs Framer's on-canvas Agent to build them one.",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "find": "node scripts/1-find.mjs",
+    "qualify": "node scripts/2-qualify.mjs",
+    "photos": "node scripts/3-photos.mjs",
+    "demo": "node scripts/2-qualify.mjs && node scripts/3-photos.mjs",
+    "build": "node scripts/4-build.mjs"
+  },
+  "dependencies": {
+    "apify-client": "^2.9.0",
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

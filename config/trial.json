@@ -1,0 +1,18 @@
+{
+  "_vertical": "landscaping",
+  "_note": "TRIAL. One search term, small cap. Measures the real no-website rate and photo yield for this vertical/city before committing to a full run. Writes trial-<date>.json so it never collides with the real scrape.",
+  "_outPrefix": "trial",
+  "actor": "compass/crawler-google-places",
+  "searchStringsArray": ["landscaping"],
+  "regions": ["San Antonio, Texas, United States"],
+  "maxCrawledPlacesPerSearch": 30,
+  "maxImages": 10,
+  "maxTotalChargeUsd": 0.75,
+  "language": "en",
+  "scrapeContacts": false,
+  "skipClosedPlaces": true,
+  "minRating": 4.5,
+  "minReviews": 25,
+  "allowTiers": ["none", "social_only"],
+  "briefsToWrite": 5
+}
