@@ -106,8 +106,26 @@ const breakpointId = node.$breakpoints[0].id;
 const styles = await framer.agent.getNodesOfTypes({ types: ['ColorStyleTokenNode', 'TextStylePresetNode'] });
 ```
 
-`DEL` every existing section and style, then `applyChanges` your DSL in one
-call. Set the page breakpoint to `layout="stack"` and `height="auto"` first.
+### Apply one section at a time, not all at once
+
+`DEL` every existing section and style first, and set the page breakpoint to
+`layout="stack"` and `height="auto"`.
+
+Then send **a separate `applyChanges` call per section**, in page order:
+foundation (colour tokens and text presets), hero, then each section down the
+page, then the breakpoints last.
+
+This matters more than it looks. A single call carrying the whole site makes
+the canvas jump from empty to finished with nothing to watch, which is useless
+when someone is looking at the screen. Section by section, the page visibly
+grows. It is also what Framer's own guidance recommends, and it catches a bad
+section immediately instead of after the whole page is built.
+
+Say what you are building before each call, in one short line ("Hero, using
+their gravel-path photo"). The person watching should never be looking at a
+still screen wondering whether it is working.
+
+Total time is about the same. It just stops looking like nothing is happening.
 
 ### Build the breakpoints. do not leave this to Framer
 
