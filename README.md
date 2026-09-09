@@ -4,8 +4,6 @@ Find a local business with a great Google rating and no website, then design and
 publish them a Framer site. One prompt, a few minutes, and every site comes out
 different.
 
-Built for Framer's Agents Hackathon, rebuilt as a Claude Skill anyone can run.
-
 ## What it does
 
 The finder scrapes Google Maps for a category and city, drops anyone who already
